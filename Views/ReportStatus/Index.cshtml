@@ -1,0 +1,32 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+<a class="btn btn-dark " asp-controller="ReportStatus" asp-action="Add">Add ReportStatus</a>
+<br />
+<br />
+<section class="vh-100">
+
+	<div class="container-fluid h-custom">
+		<div class=" d-flex justify-content-center align-items-center h-100">
+			<div class="col-md-9 col-lg-6 col-xl-6">
+				<img src="~/imgs/gallery-05.jpg" width="300" height="300"
+					 class="img-fluid" alt="Sample image">
+			</div>
+
+		</div>
+<table class="table table-striped table-bordered">
+	<tr>
+		<th>Report Status Name</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	@foreach (var reportStatus in (List<ReportStatus>)(ViewBag.reportStatuses))
+	{
+		<tr>
+			<td>@reportStatus.reportStatusName</td>
+			<td><a class="btn btn-success" href="/ReportStatus/Edit?reportStatusId=@reportStatus.reportStatusId">Edit</a></td>
+			<td><a class="btn btn-danger" href="/ReportStatus/Delete?reportStatusId=@reportStatus.reportStatusId">Delete</a></td>
+		</tr>
+	}
+</table>
+</div>
+</section>

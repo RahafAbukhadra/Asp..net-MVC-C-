@@ -1,0 +1,29 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+@model ReportDTO
+<div class="col-md-4">
+    <form method="post" action="/Report/Insert?assignmentId=@Model.assignmentId&" enctype="multipart/form-data">
+        <div class="form-floating">
+            <input asp-for="reportName" class="form-control" aria-required="true" />
+            <label asp-for="reportName"></label>
+            <span asp-validation-for="reportName" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="reportDescription" class="form-control" aria-required="true" />
+            <label asp-for="reportDescription"></label>
+            <span asp-validation-for="reportDescription" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="reportNotes" class="form-control" aria-required="true" />
+            <label asp-for="reportNotes"></label>
+            <span asp-validation-for="reportNotes" class="text-danger"></span>
+        </div>
+        <br />
+        <label for="document">Upload Attachment</label>
+        <div class="form-floating">
+            <input type="file" name="formFile"/>
+        </div>
+        <br />
+        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Add Report</button>
+    </form>
+</div>

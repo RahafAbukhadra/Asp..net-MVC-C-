@@ -1,0 +1,32 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+<a class="btn btn-dark " asp-controller="Objective" asp-action="Add">Add Objective</a>
+<br />
+<br />
+<section class="vh-100">
+
+	<div class="container-fluid h-custom">
+		<div class=" d-flex justify-content-center align-items-center h-100">
+			<div class="col-md-9 col-lg-6 col-xl-6">
+				<img src="~/imgs/gallery-01.png" width="300" height="300"
+					 class="img-fluid" alt="Sample image">
+			</div>
+
+		</div>
+<table class="table table-striped"">
+	<tr>
+		<th>Objective Name</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	@foreach (var objective in (List<Objective>)(ViewBag.objectives))
+	{
+		<tr>
+			<td>@objective.objectiveName</td>
+			<td><a class="btn btn-success" href="/Objective/Edit?objectiveId=@objective.objectiveId">Edit</a></td>
+			<td><a class="btn btn-danger" href="/Objective/Delete?objectiveId=@objective.objectiveId">Delete</a></td>
+		</tr>
+	}
+</table>
+</div>
+</section>

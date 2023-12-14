@@ -1,0 +1,42 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+@model ReportDTO
+
+<div class="col-md-4">
+    <form method="post" action="/Report/Edited?reportId=@Model.reportId&assignmentId=@Model.assignmentId&reportStatusId=@Model.reportStatusId" enctype="multipart/form-data">
+        <div class="form-floating">
+            <input asp-for="reportName" class="form-control" aria-required="true" value="@Model.reportName"/>
+            <label asp-for="reportName"></label>
+            <span asp-validation-for="reportName" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="reportDescription" class="form-control" aria-required="true" value="@Model.reportDescription" />
+            <label asp-for="reportDescription"></label>
+            <span asp-validation-for="reportDescription" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="reportNotes" class="form-control" aria-required="true" value="@Model.reportNotes" />
+            <label asp-for="reportNotes"></label>
+            <span asp-validation-for="reportNotes" class="text-danger"></span>
+        </div>
+        <div>
+            @foreach (var d in (List<Document>)(ViewBag.documents))
+            {
+                <br />
+                <a href="/Assignment/GetFile?documentId=@d.documentId" target="_blank">@d.name</a>
+                <a href="/Report/DeleteDocument?documentId=@d.documentId&reportId=@Model.reportId">Delete</a>
+                <br />
+            }
+        </div>
+         @if (((List<Document>)ViewBag.documents).Count == 0)
+         {
+                <br />
+                <label for="document">Upload Attachment</label>
+                <div class="form-floating">
+                    <input type="file" name="formFile" />
+                </div>
+                <br />
+         }
+         <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Edit Assignment</button>
+    </form>
+</div>

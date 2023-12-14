@@ -1,0 +1,83 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+@model AssignmentDTO
+<div class="col-md-4">
+    <form method="post" action="/Assignment/Edited?assignmentId=@Model.assignmentId&trainingId=@Model.trainingId" enctype="multipart/form-data">
+        <div class="form-floating">
+            <input asp-for="assignmentTitle" class="form-control" aria-required="true" value="@Model.assignmentTitle"/>
+            <label asp-for="assignmentTitle"></label>
+            <span asp-validation-for="assignmentTitle" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="assignmentDescription" class="form-control" aria-required="true" value="@Model.assignmentDescription" />
+            <label asp-for="assignmentDescription"></label>
+            <span asp-validation-for="assignmentDescription" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="assignmentNotes" class="form-control" aria-required="true" value="@Model.assignmentNotes" />
+            <label asp-for="assignmentNotes"></label>
+            <span asp-validation-for="assignmentNotes" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="startDate" class="form-control" aria-required="true" type="datetime-local" value="@Model.startDate" />
+            <label asp-for="startDate"></label>
+            <span asp-validation-for="startDate" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="endDate" class="form-control" aria-required="true" type="datetime-local" value="@Model.endDate" />
+            <label asp-for="endDate"></label>
+            <span asp-validation-for="endDate" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <select asp-for="objectiveIds" class="form-control" aria-required="true" multiple>
+                <option>Objectives</option>
+
+                @foreach (var o in (List<TrainingObjectives>)(ViewBag.assignmentObjectives))
+                {
+                    var isSelected = false;
+
+                    foreach (var os in (List<AssignmentObjectives>)(ViewBag.assignmentObjectivesSelected))
+                    {
+                        if (o.objectiveId == os.objectiveId)
+                        {
+                            isSelected = true;
+                            break;
+                        }
+                    }
+                    if (isSelected)
+                    {
+                        <option selected value="@o.objectiveId">@o.objective.objectiveName</option>
+
+                    }
+                    else
+                    {
+                        <option value="@o.objectiveId">@o.objective.objectiveName</option>
+                    }
+                }
+            </select>
+
+        </div>
+        <div>
+            @foreach(var d in (List<Document>)(ViewBag.documents))
+            {
+                <br />
+                <a href="/Assignment/GetFile?documentId=@d.documentId" target="_blank">@d.name</a>
+                <a href="/Assignment/DeleteDocument?documentId=@d.documentId&assignmentId=@Model.assignmentId&trainingId=@Model.trainingId">Delete</a>
+                <br />
+            }
+        </div>
+
+        
+        @if (((List<Document>)ViewBag.documents).Count == 0)
+        {
+            <br />
+            <label for="document">Upload Attachment</label>
+            <div class="form-floating">
+                <input type="file" name="formFile"/>
+            </div>
+            <br />
+        }
+       
+        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Edit Assignment</button>
+    </form>
+</div>

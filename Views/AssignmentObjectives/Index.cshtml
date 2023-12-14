@@ -1,0 +1,35 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+<a class="btn btn-dark " asp-controller="AssignmentObjectives" asp-action="Add">Add Assignment Objectives</a>
+<br />
+<br />
+<section class="vh-100">
+
+	<div class="container-fluid h-custom">
+		<div class=" d-flex justify-content-center align-items-center h-100">
+			<div class="col-md-9 col-lg-6 col-xl-6">
+				<img src="~/imgs/hosting-advanced.png" width="300" height="300"
+					 class="img-fluid" alt="Sample image">
+			</div>
+
+		</div>
+<table class="table table-striped">
+	<tr>
+		<th>Assignment Id</th>
+		<th>Objective Id</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	@foreach (var assignmentObjective in (List<AssignmentObjectives>)(ViewBag.AssignmentObjectives))
+	{
+		<tr>
+			<td>@assignmentObjective.assignmentId</td>
+			<td>@assignmentObjective.objectiveId</td>
+
+			<td><a class="btn btn-success" href="/AssignmentObjectives/Edit?objectiveId=@assignmentObjective.objectiveId&assignmentId=@assignmentObjective.assignmentId">Edit</a></td>
+			<td><a class="btn btn-danger" href="/AssignmentObjectives/Delete?objectiveId=@assignmentObjective.objectiveId&assignmentId=@assignmentObjective.assignmentId">Delete</a></td>
+		</tr>
+	}
+</table>
+</div>
+</section>

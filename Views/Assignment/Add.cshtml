@@ -1,0 +1,60 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+@model AssignmentDTO
+<section class="vh-100">
+
+    <div class="container-fluid h-custom">
+        <div class=" d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-6">
+                <img src="~/imgs/features-02.jpg" width="400" height="400"
+                     class="img-fluid" alt="Sample image">
+            </div>
+
+    
+
+            </div>
+    <form method="post" action="/Assignment/Insert?trainingId=@Model.trainingId&" enctype="multipart/form-data">
+        <div class="form-floating">
+            <input asp-for="assignmentTitle" class="form-control" aria-required="true" />
+            <label asp-for="assignmentTitle"></label>
+            <span asp-validation-for="assignmentTitle" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="assignmentDescription" class="form-control" aria-required="true" />
+            <label asp-for="assignmentDescription"></label>
+            <span asp-validation-for="assignmentDescription" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="assignmentNotes" class="form-control" aria-required="true" />
+            <label asp-for="assignmentNotes"></label>
+            <span asp-validation-for="assignmentNotes" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="startDate" class="form-control" aria-required="true" type="datetime-local" />
+            <label asp-for="startDate"></label>
+            <span asp-validation-for="startDate" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="endDate" class="form-control" aria-required="true" type="datetime-local" />
+            <label asp-for="endDate"></label>
+            <span asp-validation-for="endDate" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <select asp-for="objectiveIds" class="form-control" aria-required="true" multiple>
+                <option>Objectives</option>
+                @foreach (var objective in (List<TrainingObjectives>)(ViewBag.objectives))
+                {
+                    <option value="@objective.objectiveId">@objective.objective.objectiveName</option>
+                }
+            </select>
+        </div>
+        <br />
+		<label for="document">Upload Attachment</label>
+        <div class="form-floating">
+            <input type="file" name="formFile"/>
+		</div>
+		<br />
+        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Add Assignment</button>
+    </form>
+    </div>
+    </section>

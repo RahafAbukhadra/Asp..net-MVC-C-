@@ -1,0 +1,27 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+@model ReportStatusDTO
+<a class="btn btn-outline-secondary mb-4" asp-controller="ReportStatus" asp-action="Index">Go Back</a>
+<section class="vh-100">
+
+    <div class="container-fluid h-custom">
+        <div class=" d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-6">
+                <img src="~/imgs/gallery-05.jpg" width="300" height="300"
+                     class="img-fluid" alt="Sample image">
+            </div>
+
+        </div>
+<div class="col-md-4">
+    <form method="post" action="/ReportStatus/Insert">
+        <div class="form-floating">
+            <input asp-for="reportStatusName" class="form-control" aria-required="true" />
+            <label asp-for="reportStatusName"></label>
+            <span asp-validation-for="reportStatusName" class="text-danger"></span>
+        </div>
+       
+        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Add Report Status</button>
+    </form>
+</div>
+</div>
+</section>

@@ -1,0 +1,29 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+@model AssignmentObjectiveDTO
+<a class="btn btn-outline-secondary mb-4" asp-controller="AssignmentObjectives" asp-action="Index">Go Back</a>
+
+<div class="col-md-4">
+    <form method="post" action="/AssignmentObjectives/Insert">
+        <div class="form-floating">
+            <select asp-for="assignmentId" class="form-control" aria-required="true">
+                <option>Assignment</option>
+                @foreach (var assignment in (List<Assignment>)(ViewBag.assignments))
+                {
+                    <option value="@assignment.assignmentId">@assignment.training.studentId</option>
+                }
+            </select>
+        </div>
+        <div class="form-floating">
+            <select asp-for="objectiveId" class="form-control" aria-required="true">
+                <option>objective</option>
+                @foreach (var objective in (List<Objective>)(ViewBag.objectives))
+                {
+                        <option value="@objective.objectiveId">@objective.objectiveName</option>
+                }
+            </select>
+        </div>
+        
+        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Add Assignment Objectives</button>
+    </form>
+</div>

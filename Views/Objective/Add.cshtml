@@ -1,0 +1,16 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+@model ObjectiveDTO
+<a class="btn btn-outline-secondary mb-4" asp-controller="Objective" asp-action="Index">Go Back</a>
+
+<div class="col-md-4">
+    <form method="post" action="/Objective/Insert">
+        <div class="form-floating">
+            <input asp-for="objectiveName" class="form-control" aria-required="true" />
+            <label asp-for="objectiveName"></label>
+            <span asp-validation-for="objectiveName" class="text-danger"></span>
+        </div>
+       
+        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Add Objective</button>
+    </form>
+</div>

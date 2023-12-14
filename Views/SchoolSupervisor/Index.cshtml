@@ -1,0 +1,38 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+<a class="btn btn-dark " asp-controller="SchoolSupervisor" asp-action="Add">Add SchoolSupervisor</a>
+<br />
+<br />
+<section class="vh-100">
+
+	<div class="container-fluid h-custom">
+		<div class=" d-flex justify-content-center align-items-center h-100">
+			<div class="col-md-9 col-lg-6 col-xl-6">
+				<img src="~/imgs/work-steps-1.png" width="300" height="300"
+					 class="img-fluid" alt="Sample image">
+			</div>
+
+		</div>
+<table class="table table-striped">
+		<tr>
+		<th>Name</th>
+		<th>PhoneNumber</th>
+		<th>Email</th>
+		<th>School</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	@foreach (var schoolSupervisor in (List<SchoolSupervisor>)(ViewBag.SchoolSupervisors))
+	{
+		<tr>
+			<td>@schoolSupervisor.fristName @schoolSupervisor.lastName</td>
+			<td>@schoolSupervisor.PhoneNumber</td>
+			<td>@schoolSupervisor.Email</td>
+			<td>@schoolSupervisor.school.schoolName</td>
+			<td><a class="btn btn-success" href="/SchoolSupervisor/Edit?Id=@schoolSupervisor.Id">Edit</a></td>
+			<td><a class="btn btn-danger" href="/SchoolSupervisor/Delete?Id=@schoolSupervisor.Id">Delete</a></td>
+		</tr>
+	}
+</table>
+</div>
+</section>

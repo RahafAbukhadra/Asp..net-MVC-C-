@@ -1,0 +1,15 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+@model ReportStatus
+<a class="btn btn-outline-secondary mb-4" asp-controller="ReportStatus" asp-action="Index">Go Back</a>
+
+<div class="col-md-4">
+    <form method="post" action="/ReportStatus/Edited?reportStatusId=@Model.reportStatusId">
+           <div class="form-floating">
+            <input asp-for="reportStatusName" class="form-control" aria-required="true" value="@Model.reportStatusName"/>
+            <label asp-for="reportStatusName"></label>
+            <span asp-validation-for="reportStatusName" class="text-danger"></span>
+        </div>
+        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Edit Report Status</button>
+    </form>
+</div>

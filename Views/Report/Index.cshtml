@@ -1,0 +1,58 @@
+﻿@using FinalProject.Entities
+@model int
+
+<br /><a class="btn btn-dark " href="/Report/Add?assignmentId=@Model">Add Report</a>
+<br />
+<section class="vh-100">
+
+	<div class="container-fluid h-custom">
+		<div class=" d-flex justify-content-center align-items-center h-100">
+			<div class="col-md-9 col-lg-6 col-xl-6">
+				<img src="~/imgs/gallery-01.png" width="300" height="300"
+					 class="img-fluid" alt="Sample image">
+			</div>
+
+		</div>
+<table class="table table-striped">
+	<caption>Reportss Information</caption>
+	<tr>
+		<th>Training Id</th>
+		<th>Assignment Id</th>
+		<th>Report Id</th>
+		<th>Report Name</th>
+		<th>Report Description</th>
+		<th>Report Notes</th>
+		<th>Report Status</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	@foreach (var report in (List<Report>)(ViewBag.reports))
+	{
+		<tr>
+			<td>@report.assignment.trainingId</td>
+			<td>@report.assignmentId</td>
+			<td>@report.reportId</td>
+			<td>@report.reportName</td>
+			<td>@report.reportDescription</td>
+			<td>@report.reportNotes</td>
+			@if(@report.reportStatus.reportStatusName == "Pending"){
+				<td style="background:orange">@report.reportStatus.reportStatusName</td>
+				<td><a class="btn btn-success" href="/Report/Edit?reportId=@report.reportId">Edit</a></td>
+				<td><a class="btn btn-danger" href="/Report/Delete?reportId=@report.reportId">Delete</a></td>
+			}
+			else if (@report.reportStatus.reportStatusName == "Rejected")
+			{
+				<td style="background:red">@report.reportStatus.reportStatusName</td>
+				<td><a class="btn btn-success" href="/Report/Edit?reportId=@report.reportId" style="pointer-events: none;">Edit</a></td>
+				<td><a class="btn btn-danger" href="/Report/Delete?reportId=@report.reportId" @* style="pointer-events: none;" *@>Delete</a></td>
+			}
+			else
+			{
+				<td style="background:green">@report.reportStatus.reportStatusName</td>
+				<td><a class="btn btn-success" href="/Report/Edit?reportId=@report.reportId" style="pointer-events: none;">Edit</a></td>
+				<td><a class="btn btn-danger" href="/Report/Delete?reportId=@report.reportId" style="pointer-events: none;">Delete</a></td>
+			}
+
+		</tr>
+	}
+</table>

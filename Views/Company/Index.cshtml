@@ -1,0 +1,23 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+<a class="btn btn-dark " asp-controller="Company" asp-action="Add">Add Company</a>
+<br />
+<table class="table table-striped">
+	<tr>
+		<th>Company Id</th>
+		<th>Company Name</th>
+		<th>Company Address</th>
+		<th>Edit Company</th>
+		<th>Delete Company</th>
+	</tr>
+	@foreach (var company in (List<Company>)(ViewBag.companies))
+	{
+		<tr>
+			<td>@company.companyId</td>
+			<td>@company.companyName</td>
+			<td>@company.companyAddress</td>
+			<td><a class="btn btn-success" href="/Company/Edit?companyId=@company.companyId">Edit</a></td>
+			<td><a class="btn btn-danger" href="/Company/Delete?companyId=@company.companyId">Delete</a></td>
+		</tr>
+	}
+</table>

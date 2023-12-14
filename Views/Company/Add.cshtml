@@ -1,0 +1,21 @@
+﻿@using FinalProject.DTO
+@using FinalProject.Entities
+@model CompanyDTO
+<a class="btn btn-outline-secondary mb-4" asp-controller="Company" asp-action="Index">Go Back</a>
+
+<div class="col-md-4">
+    <form method="post" action="/Company/Insert">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-floating">
+            <input asp-for="companyName" class="form-control" aria-required="true" />
+            <label asp-for="companyName"></label>
+            <span asp-validation-for="companyName" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="companyAddress" class="form-control" aria-required="true" />
+            <label asp-for="companyAddress"></label>
+            <span asp-validation-for="companyAddress" class="text-danger"></span>
+        </div>
+        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Add Company</button>
+    </form>
+</div>

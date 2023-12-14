@@ -1,0 +1,54 @@
+﻿@using FinalProject.Entities
+@model int
+
+<br /><a class="btn btn-dark " href="/Assignment/Add?trainingId=@Model">Add Assignment</a>
+<br />
+<section class="vh-100">
+
+	<div class="container-fluid h-custom">
+		<div class=" d-flex justify-content-center align-items-center h-100">
+			<div class="col-md-9 col-lg-6 col-xl-6">
+				<img src="~/imgs/gallery-05.jpg" width="500" height="500"
+					 class="img-fluid" alt="Sample image">
+			</div>
+
+		</div>
+		<table class="table table-striped">
+	<caption>Assignmentss Information</caption>
+	<tr>
+
+		<th>Assignment Id</th>
+		<th>Training Id</th>
+		<th>Student Name</th>
+		<th>Assignment Title</th>
+		<th>Assignment Description</th>
+		<th>Assignment Notes</th>
+		<th>Assignment Objectives</th>
+		<th>Edit</th>
+		<th>Delete</th>
+		<th>View Reports</th>
+	</tr>
+	@foreach (var assignment in (List<Assignment>)(ViewBag.assignments))
+	{
+		<tr>
+			<td>@assignment.assignmentId</td>
+			<td>@assignment.trainingId</td>
+			<td>@assignment.training.student.fristName @assignment.training.student.lastName</td>
+			<td>@assignment.assignmentTitle</td>
+			<td>@assignment.assignmentDescription</td>
+			<td>@assignment.assignmentNotes</td>
+			<td>
+				@foreach (var assignmentObjective in assignment.assignmentObjectives)
+				{
+					<span>@assignmentObjective.objective.objectiveName</span>
+					<br />
+				}
+			</td>
+			<td><a class="btn btn-success" href="/Assignment/Edit?assignmentId=@assignment.assignmentId&trainingId=@assignment.trainingId&">Edit</a></td>
+			<td><a class="btn btn-danger" href="/Assignment/Delete?assignmentId=@assignment.assignmentId&trainingId=@assignment.trainingId">Delete</a></td>
+			<td><a class="btn btn-danger" href="/Report/ViewStudentReports?assignmentId=@assignment.assignmentId">Reports</a></td>
+		</tr>
+	}
+</table>
+</div>
+</section>

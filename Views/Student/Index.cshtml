@@ -1,0 +1,38 @@
+﻿@using FinalProject.Entities
+<a class="btn btn-dark " asp-controller="Student" asp-action="Add">Add Student</a>
+<br />
+<br />
+<section class="vh-100">
+	<div class="container-fluid h-custom">
+		<div class=" d-flex justify-content-center align-items-center h-100">
+			<div class="col-md-9 col-lg-6 col-xl-6">
+				<img src="~/imgs/work-steps-1.png" width="300" height="300"
+					 class="img-fluid" alt="Sample image">
+			</div>
+		</div>
+<table class="table table-striped ">
+	<caption>Students Information</caption>
+	<tr>
+		<th>Name</th>
+	
+		<th>Email</th>
+		<th>Major</th>
+		<th>School</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	@foreach (var student in (List<Student>)(ViewBag.students))
+	{
+		<tr>
+			<td>@student.fristName @student.lastName</td>
+		
+			<td>@student.Email</td>
+			<td>@student.studentMajor</td>
+			<td>@student.school.schoolName</td>
+			<td><a class="btn btn-success" href="/Student/Edit?Id=@student.Id">Edit</a></td>
+			<td><a class="btn btn-danger" href="/Student/Delete?Id=@student.Id">Delete</a></td>
+		</tr>
+	}
+</table>
+</div>
+</section>S
